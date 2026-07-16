@@ -17,6 +17,9 @@ background-size:400% 400%;
 animation:bg 15s ease infinite;
 color:#fff;
 overflow-x:hidden;
+padding:18px 16px;
+box-sizing:border-box;
+min-height:100vh;
 
 }
 
@@ -34,6 +37,50 @@ pointer-events:none;
 z-index:9999;
 
 }
+
+.rose-frame{
+
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+pointer-events:none;
+z-index:10000;
+
+}
+
+.rose-frame span{
+
+position:absolute;
+font-size:15px;
+
+}
+
+.rose-frame span:nth-child(1){top:-3px;left:6%;}
+.rose-frame span:nth-child(2){top:-3px;left:20%;}
+.rose-frame span:nth-child(3){top:-3px;left:34%;}
+.rose-frame span:nth-child(4){top:-3px;left:48%;}
+.rose-frame span:nth-child(5){top:-3px;left:62%;}
+.rose-frame span:nth-child(6){top:-3px;left:76%;}
+.rose-frame span:nth-child(7){top:-3px;left:90%;}
+
+.rose-frame span:nth-child(8){bottom:-3px;left:6%;}
+.rose-frame span:nth-child(9){bottom:-3px;left:22%;}
+.rose-frame span:nth-child(10){bottom:-3px;left:38%;}
+.rose-frame span:nth-child(11){bottom:-3px;left:54%;}
+.rose-frame span:nth-child(12){bottom:-3px;left:70%;}
+.rose-frame span:nth-child(13){bottom:-3px;left:86%;}
+
+.rose-frame span:nth-child(14){left:-3px;top:15%;}
+.rose-frame span:nth-child(15){left:-3px;top:40%;}
+.rose-frame span:nth-child(16){left:-3px;top:65%;}
+.rose-frame span:nth-child(17){left:-3px;top:88%;}
+
+.rose-frame span:nth-child(18){right:-3px;top:15%;}
+.rose-frame span:nth-child(19){right:-3px;top:40%;}
+.rose-frame span:nth-child(20){right:-3px;top:65%;}
+.rose-frame span:nth-child(21){right:-3px;top:88%;}
 
 @keyframes bg{
 
