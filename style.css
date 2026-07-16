@@ -92,6 +92,26 @@ left:95%;
 animation-delay:1s;
 }
 
+.hearts span:nth-child(9){
+left:12%;
+animation-delay:3s;
+}
+
+.hearts span:nth-child(10){
+left:45%;
+animation-delay:7s;
+}
+
+.hearts span:nth-child(11){
+left:72%;
+animation-delay:9s;
+}
+
+.hearts span:nth-child(12){
+left:58%;
+animation-delay:11s;
+}
+
 @keyframes float{
 
 0%{
