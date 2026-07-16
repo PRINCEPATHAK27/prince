@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Photo Puzzle ❤️</title>
+<title>Forever ❤️</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -58,36 +59,91 @@
 
 </div>
 
-<section class="puzzle-section">
+<section class="proposal">
 
-<h1>🧩 Complete Our Memory ❤️</h1>
+<div class="big-heart">
+
+❤️
+
+</div>
+
+<h1>
+
+Tamatar ❤️
+
+</h1>
+
+<h2 id="typing">
+
+</h2>
 
 <p>
 
-Photo ke tukdo ko sahi jagah laga kar
-hamari yaad complete karo.
-
-</p>
-
-<div id="puzzle"></div>
-
-<h2 id="message"></h2>
-
-<br>
-
-<button onclick="shufflePuzzle()">
-
-🔄 Shuffle Again
-
-</button>
+Meri life ki sabse beautiful memory tum ho.
 
 <br><br>
 
-<a href="proposal.html">
+Tumhare saath bitaya hua har pal mere liye duniya ki sabse pyari feeling hai.
+
+<br><br>
+
+Main chahta hoon ki hum hamesha isi tarah ek dusre ka haath pakad kar zindagi bhar saath chalein.
+
+<br><br>
+
+Chahe kitni bhi mushkilein aaye...
+
+Main kabhi tumhara saath nahi chhodunga.
+
+<br><br>
+
+Tum meri duniya ho...
+
+Meri khushi ho...
+
+Aur meri sabse khoobsurat aadat ho.
+
+❤️
+
+</p>
+
+<h1>
+
+I Love You Forever ❤️
+
+</h1>
+
+<button onclick="showLove()">
+
+💍 Open My Heart
+
+</button>
+
+<div id="loveBox" style="display:none;">
+
+<h2>
+
+Will You Stay With Me Forever? ❤️
+
+</h2>
+
+<h1>
+
+I Love You Tamatar 🍅
+
+Forever & Always ❤️
+
+</h1>
+
+</div>
+
+<br>
+
+<a href="index.html">
 
 <button>
 
-💍 Final Surprise ❤️
+🏠 Back To Home
 
 </button>
 
@@ -95,7 +151,38 @@ hamari yaad complete karo.
 
 </section>
 
-<script src="puzzle.js"></script>
+<script>
+
+const text="Every heartbeat of mine says... I Love You ❤️";
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typing,70);
+
+}
+
+}
+
+typing();
+
+function showLove(){
+
+document.getElementById("loveBox").style.display="block";
+
+alert("❤️ I Love You Forever Tamatar ❤️");
+
+}
+
+</script>
 
 </body>
+
 </html>
