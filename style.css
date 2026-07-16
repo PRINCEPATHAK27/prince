@@ -20,6 +20,21 @@ overflow-x:hidden;
 
 }
 
+body::before{
+
+content:"";
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+border:8px solid #e60023;
+box-sizing:border-box;
+pointer-events:none;
+z-index:9999;
+
+}
+
 @keyframes bg{
 
 0%{background-position:0% 50%;}
@@ -177,7 +192,7 @@ border:1px solid rgba(255,255,255,.2);
 
 .glass h1{
 
-font-size:55px;
+font-size:40px;
 margin-bottom:10px;
 
 }
