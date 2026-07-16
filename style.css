@@ -278,8 +278,8 @@ font-size:28px;
 .photo-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:14px;
-max-width:420px;
+gap:12px;
+max-width:250px;
 margin:0 auto;
 }
 
@@ -308,8 +308,8 @@ display:block;
 .photo-card p{
 text-align:center;
 margin-top:8px;
-font-size:13px;
-font-weight:600;
+font-size:17px;
+font-weight:700;
 color:white;
 }
 
@@ -318,7 +318,7 @@ color:white;
 @media (max-width: 380px){
 .photo-grid{
 gap:10px;
-max-width:340px;
+max-width:220px;
 }
 
 .photo-card{
@@ -326,7 +326,7 @@ padding:6px;
 }
 
 .photo-card p{
-font-size:12px;
+font-size:15px;
 }
 }
 
