@@ -43,7 +43,7 @@ function startJourney() {
 
     if (hero) {
 
-        hero.style.display = "none";
+        hero.remove();
 
     }
 
