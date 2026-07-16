@@ -246,8 +246,7 @@ gap:4px;
 background-image
 /* Mobile Responsive */
 
-@media (max-width: 608px){
-
+@media (max-width: 768px){
 .gallery{
 padding:20px;
 }
@@ -287,3 +286,4 @@ font-size:14px;
 font-weight:600;
 color:white;
 }
+
