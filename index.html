@@ -1,104 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tamatar ❤️ This is for You</title>
 
-    <link rel="stylesheet" href="style.css">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️ Tamatar ❤️ This is For You</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-    <!-- Background Music -->
-    <audio id="bgMusic" autoplay loop>
-        <source src="music/romantic.mp3" type="audio/mp3">
-    </audio>
+<!-- Background Music -->
 
+<audio id="bgMusic" autoplay loop>
+    <source src="music/romantic.mp3" type="audio/mp3">
+</audio>
 
-    <!-- Welcome Screen -->
-    <section class="welcome">
+<!-- Floating Hearts -->
 
-        <div class="heart">❤️</div>
+<div class="hearts">
 
-        <h1>Tamatar ❤️</h1>
-
-        <h2>This is for You</h2>
-
-        <p>
-            Ye chhoti si duniya sirf tumhare liye hai...
-            <br>
-            Hamari yaadon aur hamari mohabbat ke naam ❤️
-        </p>
-
-        <button onclick="openStory()">
-            Open Our Story 💌
-        </button>
-
-    </section>
-
-
-
-    <!-- Love Story Section -->
-    <section id="story" class="story">
-
-        <h1>
-            Hamari Love Story ❤️
-        </h1>
-
-
-        <p>
-        Sab kuch ek chhoti si mulaqat se shuru hua. Tum Shilpi didi ke ghar aayi thi, aur us din hum dono ne pehli baar call par ghanton baat ki. Pehli hi baat me tum mera mazaak uda rahi thi aur main bhi tumhe chhed raha tha. Pata hi nahi chala ki woh hasi-mazaak kab roz ki baaton me badal gaya.
-        </p>
-
-
-        <p>
-        Phir ek din maine tumhari photo ke bahane tumhara number maanga. Lekin sabse pyari baat ye thi ki tumne khud Shilpi didi ke phone se mera number yaad karke mujhe message kiya. Us din se hamari baatein aur bhi badh gayin. Har din, har raat bas ek dusre se baat karna hi sabse khaas pal ban gaya.
-        </p>
-
-
-        <p>
-        Dheere-dheere pata hi nahi chala ki kab hum dono ko ek dusre se itna pyaar ho gaya. Phir tum Surat chali gayi. Jab tum wapas aayi, to shayad ek galatfahmi ki wajah se hum dono ek dusre se door ho gaye. Woh waqt bahut mushkil tha.
-        </p>
-
-
-        <p>
-        Lekin shayad hamari mohabbat itni kamzor nahi thi. Pura ek saal baad, jab Shilpi didi mere ghar aayi, maine unke phone se tumhe phir se message kiya. Tab hume pata chala ki hum dono ke beech sirf ek galatfahmi thi.
-        </p>
-
-
-        <p>
-        Us din ke baad hum phir se ek ho gaye. Aur aaj hume saath me ek saal ho chuka hai. Har din tumhare saath meri zindagi aur bhi khoobsurat lagti hai.
-        </p>
-
-
-        <p>
-        Main tumse ek wada karta hoon...
-        <br><br>
-        Chahe zindagi me kitni bhi mushkilein aaye, main hamesha tumhara saath dunga. Main hamesha tumhare saath rahunga. Tum meri sabse pyari khushi ho, aur hamesha rahogi. ❤️
-        </p>
-
-
-        <h2>
-            I Love You, Tamatar. Forever. ❤️
-        </h2>
-
-<div class="navigation">
-
-    <button onclick="openGallery()">
-        Our Memories 📸❤️
-    </button>
-
-
-    <button onclick="openProposal()">
-        Final Surprise 💍❤️
-    </button>
+<span>❤️</span>
+<span>💖</span>
+<span>💕</span>
+<span>💗</span>
+<span>💞</span>
+<span>❤️</span>
+<span>💖</span>
+<span>💕</span>
 
 </div>
-    </section>
 
+<!-- Welcome Screen -->
 
-    <script src="script.js"></script>
+<section class="hero">
+
+<div class="glass">
+
+<h1>
+
+Tamatar ❤️
+
+</h1>
+
+<h2>
+
+This Is For You
+
+</h2>
+
+<p>
+
+Ye website sirf ek website nahi...
+
+Ye meri feelings hain...
+
+Meri yaadein hain...
+
+Aur meri duniya ka sabse khoobsurat hissa...
+
+❤️ Tum ❤️
+
+</p>
+
+<button onclick="startJourney()">
+
+Start Our Journey ❤️
+
+</button>
+
+</div>
+
+</section>
+
+<!-- Love Story -->
+
+<section id="story" class="story">
+
+<h1>
+
+Hamari Love Story ❤️
+
+</h1>
+
+<p>
+
+Sab kuch ek chhoti si mulaqat se shuru hua.
+Tum Shilpi didi ke ghar aayi thi,
+aur us din hum dono ne pehli baar call par ghanton baat ki.
+
+Pehli hi baat me tum mera mazaak uda rahi thi,
+aur main bhi tumhe chhed raha tha.
+
+Pata hi nahi chala ki woh hasi-mazaak kab roz ki baaton me badal gaya.
+
+</p>
+
+<p>
+
+Phir ek din maine tumhari photo ke bahane tumhara number maanga.
+
+Lekin sabse pyari baat ye thi ki tumne khud Shilpi didi ke phone se mera number yaad karke mujhe message kiya.
+
+Us din se hamari baatein aur bhi badh gayin.
+
+Har din...
+
+Har raat...
+
+Bas ek dusre se baat karna hi sabse khaas pal ban gaya.
+
+</p>
+
+<p>
+
+Dheere-dheere pata hi nahi chala ki kab hum dono ko ek dusre se itna pyaar ho gaya.
+
+Phir tum Surat chali gayi.
+
+Jab tum wapas aayi,
+
+to shayad ek galatfahmi ki wajah se hum dono ek dusre se door ho gaye.
+
+Woh waqt bahut mushkil tha.
+
+</p>
+<p>
+
+Lekin shayad hamari mohabbat itni kamzor nahi thi.
+
+Pura ek saal baad,
+
+jab Shilpi didi mere ghar aayi,
+
+maine unke phone se tumhe phir se message kiya.
+
+Tab hume pata chala ki hum dono ke beech sirf ek galatfahmi thi.
+
+</p>
+
+<p>
+
+Us din ke baad hum phir se ek ho gaye.
+
+Aur aaj hume saath me ek saal ho chuka hai.
+
+Har din tumhare saath meri zindagi aur bhi khoobsurat lagti hai.
+
+</p>
+
+<p>
+
+Main tumse ek wada karta hoon...
+
+<br><br>
+
+Chahe zindagi me kitni bhi mushkilein aaye,
+
+Main hamesha tumhara saath dunga.
+
+Main hamesha tumhare saath rahunga.
+
+Tum meri sabse pyari khushi ho,
+
+Aur hamesha rahogi.
+
+❤️
+
+</p>
+
+<h2>
+
+I Love You,
+Tamatar.
+
+Forever ❤️
+
+</h2>
+
+<div class="buttons">
+
+<a href="gallery.html">
+
+<button>
+
+📸 Our Memories
+
+</button>
+
+</a>
+
+<a href="puzzle.html">
+
+<button>
+
+🧩 Puzzle Game
+
+</button>
+
+</a>
+
+<a href="proposal.html">
+
+<button>
+
+💍 Final Surprise
+
+</button>
+
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+Made With Endless Love ❤️
+
+<br>
+
+Only For My Tamatar 🍅
+
+</p>
+
+</footer>
+
+<script src="script.js"></script>
 
 </body>
+
 </html>
