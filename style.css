@@ -295,11 +295,56 @@ margin-bottom:25px;
 font-size:28px;
 }
 
+.featured-frame{
+position:relative;
+max-width:280px;
+margin:0 auto 35px;
+background:rgba(255,255,255,.15);
+border-radius:26px;
+padding:16px;
+backdrop-filter:blur(10px);
+box-shadow:0 12px 35px rgba(0,0,0,.4);
+border:3px solid rgba(255,255,255,.5);
+}
+
+.featured-frame img{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+border-radius:20px;
+display:block;
+}
+
+.featured-frame p{
+text-align:center;
+margin-top:12px;
+font-size:19px;
+font-weight:700;
+color:white;
+}
+
+.featured-frame .deco{
+position:absolute;
+font-size:30px;
+animation:twinkle 2.5s ease-in-out infinite;
+pointer-events:none;
+}
+
+.deco-tl{top:-16px;left:-16px;animation-delay:0s;}
+.deco-tr{top:-16px;right:-16px;animation-delay:.6s;}
+.deco-bl{bottom:-16px;left:-16px;animation-delay:1.2s;}
+.deco-br{bottom:-16px;right:-16px;animation-delay:1.8s;}
+
+@keyframes twinkle{
+0%,100%{transform:scale(1) rotate(0deg);opacity:1;}
+50%{transform:scale(1.25) rotate(10deg);opacity:.7;}
+}
+
 .photo-grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
-gap:12px;
-max-width:250px;
+gap:14px;
+max-width:300px;
 margin:0 auto;
 }
 
@@ -313,16 +358,12 @@ transition:.3s;
 animation:photoLoop 4s ease-in-out infinite;
 }
 
-.photo-card:nth-child(1){animation-delay:0s;}
-.photo-card:nth-child(2){animation-delay:.4s;}
-.photo-card:nth-child(3){animation-delay:.8s;}
-.photo-card:nth-child(4){animation-delay:1.2s;}
-.photo-card:nth-child(5){animation-delay:1.6s;}
-.photo-card:nth-child(6){animation-delay:2s;}
-.photo-card:nth-child(7){animation-delay:2.4s;}
-.photo-card:nth-child(8){animation-delay:2.8s;}
-.photo-card:nth-child(9){animation-delay:3.2s;}
-.photo-card:nth-child(10){animation-delay:3.6s;}
+.photo-card:nth-child(6n+1){animation-delay:0s;}
+.photo-card:nth-child(6n+2){animation-delay:.4s;}
+.photo-card:nth-child(6n+3){animation-delay:.8s;}
+.photo-card:nth-child(6n+4){animation-delay:1.2s;}
+.photo-card:nth-child(6n+5){animation-delay:1.6s;}
+.photo-card:nth-child(6n){animation-delay:2s;}
 
 @keyframes photoLoop{
 0%,100%{
@@ -361,9 +402,18 @@ color:white;
 /* Mobile Responsive */
 
 @media (max-width: 380px){
+.featured-frame{
+max-width:230px;
+padding:12px;
+}
+
+.deco-tl,.deco-tr,.deco-bl,.deco-br{
+font-size:24px;
+}
+
 .photo-grid{
 gap:10px;
-max-width:220px;
+max-width:260px;
 }
 
 .photo-card{
