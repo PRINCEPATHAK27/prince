@@ -1,135 +1,82 @@
-let pieces = [];
+const puzzle=document.getElementById("puzzle");
 
-let correctOrder = [
-    0,1,2,
-    3,4,5,
-    6,7,8
-];
+let order=[0,1,2,3,4,5,6,7,8];
 
+let first=null;
 
-function createPuzzle(){
-
-
-let puzzle = document.getElementById("puzzle");
+function draw(){
 
 puzzle.innerHTML="";
 
+order.forEach(num=>{
 
-pieces = [...correctOrder];
+let piece=document.createElement("div");
 
+piece.className="piece";
 
-pieces.sort(()=>Math.random()-0.5);
+piece.dataset.value=num;
 
+let x=(num%3)*50;
 
+let y=Math.floor(num/3)*50;
 
-pieces.forEach((item)=>{
+piece.style.backgroundPosition=`${x}% ${y}%`;
 
+piece.onclick=()=>select(piece);
 
-let box = document.createElement("div");
-
-
-box.className="piece";
-
-
-box.style.backgroundImage =
-"url('images/puzzle-photo.jpg')";
-
-
-box.style.backgroundPosition =
-getPosition(item);
-
-
-
-box.dataset.value=item;
-
-
-box.onclick=function(){
-
-movePiece(this);
-
-};
-
-
-puzzle.appendChild(box);
-
+puzzle.appendChild(piece);
 
 });
 
+}
+
+function select(piece){
+
+if(first==null){
+
+first=piece;
+
+piece.classList.add("selected");
+
+return;
 
 }
 
+let second=piece;
 
-
-function getPosition(i){
-
-
-let x = (i%3)*50;
-
-let y = Math.floor(i/3)*50;
-
-
-return `${x}% ${y}%`;
-
-}
-
-
-
-function movePiece(piece){
-
-
-piece.classList.toggle("selected");
-
-
-let selected =
-document.querySelectorAll(".selected");
-
-
-if(selected.length===2){
-
-
-let first = selected[0];
-
-let second = selected[1];
-
-
-let temp = first.style.backgroundPosition;
-
-
-first.style.backgroundPosition =
-second.style.backgroundPosition;
-
-
-second.style.backgroundPosition =
-temp;
-
+swap(first,second);
 
 first.classList.remove("selected");
 
-second.classList.remove("selected");
+first=null;
 
-
-checkWin();
-
+check();
 
 }
 
+function swap(a,b){
+
+let temp=a.style.backgroundPosition;
+
+a.style.backgroundPosition=b.style.backgroundPosition;
+
+b.style.backgroundPosition=temp;
+
+let t=a.dataset.value;
+
+a.dataset.value=b.dataset.value;
+
+b.dataset.value=t;
 
 }
 
+function check(){
 
-
-function checkWin(){
-
-
-let all =
-document.querySelectorAll(".piece");
-
+let pieces=document.querySelectorAll(".piece");
 
 let win=true;
 
-
-all.forEach((p,i)=>{
-
+pieces.forEach((p,i)=>{
 
 if(Number(p.dataset.value)!==i){
 
@@ -137,31 +84,24 @@ win=false;
 
 }
 
-
 });
-
-
 
 if(win){
 
+document.getElementById("message").innerHTML=
 
-document.getElementById("message").innerHTML =
-"❤️ Wah! Tumne hamari memory complete kar di ❤️";
-
-
-}
-
+"🎉 Congratulations ❤️<br><br>I Love You Tamatar Forever ❤️";
 
 }
 
-
+}
 
 function shufflePuzzle(){
 
-createPuzzle();
+order.sort(()=>Math.random()-0.5);
+
+draw();
 
 }
 
-
-
-createPuzzle();
+shufflePuzzle();
