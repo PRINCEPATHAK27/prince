@@ -1,178 +1,235 @@
-/* ===========================
-      PREMIUM SCRIPT
-=========================== */
+/* ==================================
+      FOREVER WITH YOU ❤️
+          main.js
+==================================*/
 
-const music = document.getElementById("bgMusic");
-
-/* Background Music */
-
+// Loader
 window.addEventListener("load", () => {
 
-    if (music) {
+const loader = document.getElementById("loader");
 
-        music.volume = 0.5;
+setTimeout(() => {
 
-        let play = music.play();
+loader.style.opacity = "0";
+loader.style.visibility = "hidden";
 
-        if (play !== undefined) {
-
-            play.catch(() => {
-
-                document.body.addEventListener("click", () => {
-
-                    music.play();
-
-                }, { once: true });
-
-            });
-
-        }
-
-    }
+},1800);
 
 });
 
+// Music
 
-/* Start Journey */
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-function startJourney() {
+let playing = false;
 
-    const story = document.getElementById("story");
+musicBtn.addEventListener("click",()=>{
 
-    const hero = document.querySelector(".hero");
-
-    if (hero) {
-
-        hero.remove();
-
-    }
-
-    story.style.display = "block";
-
-    story.scrollIntoView({
-
-        behavior: "smooth"
-
-    });
-
-}
-
-
-/* Fade Animation */
-
-const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-});
-
-document.querySelectorAll(".story p,.photo-card,.proposal p").forEach(el => {
-
-    observer.observe(el);
-
-});
-
-
-/* Image Click */
-
-document.querySelectorAll(".photo-card img").forEach(img => {
-
-    img.onclick = function () {
-
-        const popup = document.createElement("div");
-
-        popup.className = "popup";
-
-        popup.innerHTML =
-
-        `<img src="${this.src}">
-        <span class="close">✖</span>`;
-
-        document.body.appendChild(popup);
-
-        popup.onclick = function () {
-
-            popup.remove();
-
-        }
-
-    };
-
-});
-
-
-/* Floating Hearts */
-
-setInterval(() => {
-
-    const heart = document.createElement("div");
-
-    heart.innerHTML = "❤️";
-
-    heart.className = "floating-heart";
-
-    heart.style.left = Math.random()*100+"vw";
-
-    heart.style.fontSize =
-
-    (20+Math.random()*25)+"px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    },6000);
-
-},900);
-
-
-/* Proposal Effect */
-
-function surprise(){
-
-alert("❤️ I Love You Forever Tamatar ❤️");
-
-}
-
-
-/* Puzzle Winner */
-
-function puzzleWin(){
-
-document.getElementById("message").innerHTML=
-
-"❤️ Congratulations ❤️<br>You completed our beautiful memory!";
-
-}
-
-
-/* Music Button */
-
-function toggleMusic(){
-
-if(music.paused){
-
-music.play();
-
-}else{
+if(playing){
 
 music.pause();
 
+musicBtn.innerHTML="🎵";
+
+}else{
+
+music.play();
+
+musicBtn.innerHTML="⏸️";
+
+}
+
+playing=!playing;
+
+});
+
+// Start Journey
+
+const startBtn=document.getElementById("startJourney");
+
+if(startBtn){
+
+startBtn.onclick=()=>{
+
+document.body.style.opacity="0";
+
+setTimeout(()=>{
+
+window.location.href="story.html";
+
+},700);
+
 }
 
 }
 
+// Fade Animation
 
-/* Console Message */
+const observer=new IntersectionObserver((entries)=>{
 
-console.log("Made With Love ❤️");
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".card,.glass").forEach(el=>{
+
+observer.observe(el);
+
+});
+
+// Floating Hearts Generator
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.className="floatingHeart";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},8000);
+
+}
+
+setInterval(createHeart,900);
+
+// Shooting Stars
+
+function shootingStar(){
+
+const star=document.createElement("div");
+
+star.className="shootingStar";
+
+star.style.top=Math.random()*40+"%";
+
+star.style.left="-100px";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+
+star.remove();
+
+},2500);
+
+}
+
+setInterval(shootingStar,5000);
+
+// Button Hover Sound (optional)
+
+document.querySelectorAll("button").forEach(btn=>{
+
+btn.addEventListener("mouseenter",()=>{
+
+btn.style.transform="scale(1.05)";
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.transform="scale(1)";
+
+});
+
+});
+
+// Scroll To Top
+
+const topBtn=document.createElement("button");
+
+topBtn.id="topBtn";
+
+topBtn.innerHTML="⬆";
+
+document.body.appendChild(topBtn);
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>400){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+// Welcome Console
+
+console.log("❤️ Forever With You - Prince ❤️");
+
+// Hidden Secret (7 taps)
+
+let taps=0;
+
+document.querySelector(".hero").addEventListener("click",()=>{
+
+taps++;
+
+if(taps===7){
+
+alert("❤️ Secret Unlocked ❤️");
+
+window.location.href="secret.html";
+
+}
+
+});
+
+// Prevent Right Click
+
+document.addEventListener("contextmenu",(e)=>{
+
+e.preventDefault();
+
+});
+
+// Fade In
+
+document.body.style.opacity="0";
+
+window.onload=()=>{
+
+document.body.style.transition="1s";
+
+document.body.style.opacity="1";
+
+};
