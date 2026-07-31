@@ -1,187 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Forever ❤️</title>
+<title>Forever With You ❤️</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="rose-frame">
+<div id="stars"></div>
+<div id="hearts"></div>
+<div id="flowers"></div>
 
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-
-</div>
-
-
-
-<div class="hearts">
-
-<span>❤️</span>
-<span>💕</span>
-<span>💖</span>
-<span>💗</span>
-<span>💞</span>
-<span>💘</span>
-<span>💝</span>
-<span>🥰</span>
-<span>💓</span>
-<span>💟</span>
-<span>😍</span>
-<span>💌</span>
-
-</div>
+<audio autoplay loop>
+<source src="music/final.mp3" type="audio/mp3">
+</audio>
 
 <section class="proposal">
 
-<div class="big-heart">
+<h3>❤️ One Last Thing ❤️</h3>
 
-❤️
-
-</div>
-
-<h1>
-
-Tamatar ❤️
-
-</h1>
-
-<h2 id="typing">
-
-</h2>
+<h1>Palak ❤️</h1>
 
 <p>
 
-Meri life ki sabse beautiful memory tum ho.
+Agar tum yaha tak aa gayi ho...
 
-<br><br>
+To shayad tumne meri har feeling padh li...
 
-Tumhare saath bitaya hua har pal mere liye duniya ki sabse pyari feeling hai.
+Har memory dekh li...
 
-<br><br>
+Aur mera dil bhi...
 
-Main chahta hoon ki hum hamesha isi tarah ek dusre ka haath pakad kar zindagi bhar saath chalein.
-
-<br><br>
-
-Chahe kitni bhi mushkilein aaye...
-
-Main kabhi tumhara saath nahi chhodunga.
-
-<br><br>
-
-Tum meri duniya ho...
-
-Meri khushi ho...
-
-Aur meri sabse khoobsurat aadat ho.
-
-❤️
+Ab sirf ek sawal bacha hai...
 
 </p>
 
-<h1>
-
-I Love You Forever ❤️
-
-</h1>
-
-<button onclick="showLove()">
-
-💍 Open My Heart
-
-</button>
-
-<div id="loveBox" style="display:none;">
-
 <h2>
 
-Will You Stay With Me Forever? ❤️
+Will You Stay With Me Forever?
+
+🥹❤️
 
 </h2>
 
-<h1>
+<div class="btnBox">
 
-I Love You Tamatar 🍅
+<button id="yes">
 
-Forever & Always ❤️
-
-</h1>
-
-</div>
-
-<br>
-
-<a href="index.html">
-
-<button>
-
-🏠 Back To Home
+YES ❤️
 
 </button>
 
-</a>
+<button id="no">
+
+NO 🙈
+
+</button>
+
+</div>
 
 </section>
 
+<div id="ending">
+
+<h1>
+
+❤️ Thank You ❤️
+
+</h1>
+
+<p>
+
+Palak...
+
+Meri life ka sabse beautiful chapter tum ho.
+
+Main perfect nahi hu.
+
+Kabhi gussa karta hu.
+
+Kabhi galti karta hu.
+
+Lekin...
+
+Ek baat kabhi nahi badlegi.
+
+Main tumse aaj bhi...
+
+Kal bhi...
+
+Aur hamesha...
+
+Bahut pyaar karunga.
+
+❤️
+
+Thank You For Coming Into My Life.
+
+Forever Yours
+
+Prince Pathak ❤️
+
+</p>
+
+</div>
+
+<canvas id="fireworks"></canvas>
+
 <script>
 
-const text="Every heartbeat of mine says... I Love You ❤️";
+const yes=document.getElementById("yes");
 
-let i=0;
+const no=document.getElementById("no");
 
-function typing(){
+const ending=document.getElementById("ending");
 
-if(i<text.length){
+ending.style.display="none";
 
-document.getElementById("typing").innerHTML+=text.charAt(i);
+yes.onclick=()=>{
 
-i++;
+document.querySelector(".proposal").style.display="none";
 
-setTimeout(typing,70);
+ending.style.display="block";
 
-}
+alert("❤️ I Love You Forever ❤️");
 
-}
+};
 
-typing();
+no.onclick=()=>{
 
-function showLove(){
+const x=Math.random()*80;
 
-document.getElementById("loveBox").style.display="block";
+const y=Math.random()*80;
 
-alert("❤️ I Love You Forever Tamatar ❤️");
+no.style.position="absolute";
 
-}
+no.style.left=x+"vw";
+
+no.style.top=y+"vh";
+
+};
 
 </script>
+
+<script src="js/main.js"></script>
 
 </body>
 
