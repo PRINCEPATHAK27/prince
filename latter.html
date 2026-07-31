@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Letter ❤️</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<div id="stars"></div>
+<div id="hearts"></div>
+<div id="flowers"></div>
+
+<section class="letterPage">
+
+<div class="glass">
+
+<h1>💌 Secret Letter</h1>
+
+<p>
+Ye letter sirf ek hi insaan ke liye hai...
+❤️
+</p>
+
+<input
+type="password"
+id="password"
+placeholder="Enter Secret Password">
+
+<br><br>
+
+<button id="startJourney" onclick="unlockLetter()">
+
+Unlock ❤️
+
+</button>
+
+</div>
+
+</section>
+
+<div id="letterBox" style="display:none;">
+
+<div class="glass">
+
+<h1>My Dear Palak ❤️</h1>
+
+<p id="typing">
+
+</p>
+
+<button
+id="startJourney"
+onclick="location.href='night.html'">
+
+Continue ❤️
+
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const message=`
+
+My Dear Palak ❤️
+
+Kabhi kabhi words kam pad jaate hain...
+
+Lekin phir bhi aaj ek baat kehna chahta hoon.
+
+Tum meri life ki sabse khoobsurat smile ho.
+
+Jab tum hasta ho...
+
+Meri duniya aur bhi beautiful lagti hai.
+
+Shayad main perfect nahi hoon.
+
+Kabhi gussa bhi karta hoon.
+
+Kabhi galtiyan bhi karta hoon.
+
+Lekin ek cheez kabhi nahi badlegi...
+
+Mera Pyaar.
+
+Main har din sirf itna chahta hoon
+
+ki tum hamesha khush raho.
+
+Aur agar tum khush ho...
+
+to samajh lena
+
+main bhi duniya ka sabse lucky insaan hoon.
+
+I Love You Forever ❤️
+
+- Prince Pathak
+
+`;
+
+function unlockLetter(){
+
+const pass=document.getElementById("password").value;
+
+if(pass==="Tamatar"){
+
+document.querySelector(".letterPage").style.display="none";
+
+document.getElementById("letterBox").style.display="block";
+
+typeWriter();
+
+}else{
+
+alert("Wrong Password ❤️");
+
+}
+
+}
+
+let i=0;
+
+function typeWriter(){
+
+if(i<message.length){
+
+document.getElementById("typing").innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,40);
+
+}
+
+}
+
+</script>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
