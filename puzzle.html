@@ -3,99 +3,97 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Photo Puzzle ❤️</title>
+<title>Memory Puzzle ❤️</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="rose-frame">
+<div id="stars"></div>
+<div id="hearts"></div>
+<div id="flowers"></div>
 
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
-<span>🌹</span>
+<section class="gameContainer">
 
-</div>
-
-
-
-<div class="hearts">
-
-<span>❤️</span>
-<span>💕</span>
-<span>💖</span>
-<span>💗</span>
-<span>💞</span>
-<span>💘</span>
-<span>💝</span>
-<span>🥰</span>
-<span>💓</span>
-<span>💟</span>
-<span>😍</span>
-<span>💌</span>
-
-</div>
-
-<section class="puzzle-section">
-
-<h1>🧩 Complete Our Memory ❤️</h1>
+<h1>🧩 Memory Puzzle ❤️</h1>
 
 <p>
 
-Photo ke tukdo ko sahi jagah laga kar
-hamari yaad complete karo.
+Har memory tabhi complete hoti hai...
+Jab hum dono saath hote hain. ❤️
 
 </p>
 
-<div id="puzzle"></div>
+<div id="puzzle">
 
-<h2 id="message"></h2>
+<img src="images/p1.jpg" class="piece">
+<img src="images/p2.jpg" class="piece">
+<img src="images/p3.jpg" class="piece">
 
-<br>
+<img src="images/p4.jpg" class="piece">
+<img src="images/p5.jpg" class="piece">
+<img src="images/p6.jpg" class="piece">
 
-<button onclick="shufflePuzzle()">
+<img src="images/p7.jpg" class="piece">
+<img src="images/p8.jpg" class="piece">
+<img src="images/p9.jpg" class="piece">
 
-🔄 Shuffle Again
+</div>
+
+<button id="shuffle">
+
+🔀 Shuffle Puzzle
 
 </button>
 
-<br><br>
+<button
 
-<a href="proposal.html">
+id="nextBtn"
 
-<button>
+style="display:none"
 
-💍 Final Surprise ❤️
+onclick="location.href='letter.html'">
+
+💌 Unlock Secret Letter
 
 </button>
-
-</a>
 
 </section>
 
-<script src="puzzle.js"></script>
+<script>
+
+const puzzle=document.getElementById("puzzle");
+
+const pieces=[...document.querySelectorAll(".piece")];
+
+const shuffle=document.getElementById("shuffle");
+
+const next=document.getElementById("nextBtn");
+
+shuffle.onclick=()=>{
+
+pieces.sort(()=>Math.random()-0.5);
+
+pieces.forEach(piece=>puzzle.appendChild(piece));
+
+setTimeout(()=>{
+
+alert("❤️ Puzzle Complete ❤️");
+
+next.style.display="inline-block";
+
+},5000);
+
+};
+
+</script>
+
+<script src="js/main.js"></script>
 
 </body>
-</html
+
+</html>
