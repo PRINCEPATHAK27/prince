@@ -1,3 +1,4 @@
+<!-- proposal.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 <link rel="stylesheet" href="css/style.css">
 <style>
   .ask-wrap{ max-width:520px; width:100%; padding:3rem 2.2rem; text-align:center; position:relative; }
+  .ask-wrap .display-lg { background: linear-gradient(135deg, #ff7a94, #f0c079, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .btn-row{
     position:relative;
     display:flex;
@@ -15,8 +17,32 @@
     margin-top:2.2rem;
     min-height:70px;
   }
-  #no-btn{ position:relative; transition:none; }
-  #celebrate{ display:none; text-align:center; }
+  #no-btn{
+    position:relative;
+    transition: all 0.2s ease;
+  }
+  #celebrate{
+    display:none;
+    text-align:center;
+    animation: zoomIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #celebrate .display-xl { background: linear-gradient(135deg, #ff7a94, #f0c079); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  #yes-btn { position: relative; overflow: hidden; }
+  #yes-btn::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff7a94, #f0c079, #c084fc);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.5;
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
 </style>
 </head>
 <body>
@@ -24,7 +50,7 @@
 
 <main class="page">
   <div class="glass ask-wrap" id="ask-box">
-    <p class="eyebrow" style="margin-bottom:0.6rem;">the final chapter</p>
+    <p class="eyebrow" style="margin-bottom:0.6rem;">💍 the final chapter</p>
     <h1 class="display-lg serif" style="margin:0 0 1rem;">Palak,<br>will you be mine — forever?</h1>
     <p class="lead">Every page before this was true. This one matters most.</p>
     <div class="btn-row">
@@ -34,7 +60,7 @@
   </div>
 
   <div class="glass ask-wrap" id="celebrate">
-    <p class="display-xl serif" style="margin:0 0 0.8rem;">She said yes.</p>
+    <p class="display-xl serif" style="margin:0 0 0.8rem;">She said yes. 💛</p>
     <p class="lead">Prince Pathak & Palak — forever starts now. 💛</p>
   </div>
 </main>
@@ -50,15 +76,15 @@ const askBox = document.getElementById('ask-box');
 const celebrate = document.getElementById('celebrate');
 const btnRow = document.querySelector('.btn-row');
 
-// "No" playfully dodges away when hovered/clicked
 function dodge(){
   const maxX = btnRow.clientWidth - noBtn.offsetWidth - 10;
   const maxY = 40;
-  const x = (Math.random()-0.5)*2*maxX*0.4;
+  const x = (Math.random()-0.5)*2*maxX*0.5;
   const y = (Math.random()-0.5)*2*maxY;
   noBtn.style.position = 'relative';
   noBtn.style.left = x + 'px';
   noBtn.style.top = y + 'px';
+  noBtn.style.transform = `scale(${0.7 + Math.random()*0.6})`;
 }
 noBtn.addEventListener('mouseenter', dodge);
 noBtn.addEventListener('click', (e)=>{ e.preventDefault(); dodge(); });
@@ -67,8 +93,8 @@ noBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); dodge(); });
 yesBtn.addEventListener('click', () => {
   askBox.style.display = 'none';
   celebrate.style.display = 'block';
-  launchConfetti(4000);
-  launchFireworks(6500);
+  launchConfetti(5000);
+  launchFireworks(7000);
 });
 </script>
 </body>
