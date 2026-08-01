@@ -767,3 +767,78 @@ padding:50px;
 animation:fadeUp 1.2s;
 
 }
+/* Full Screen Viewer */
+
+#viewer{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+background:rgba(0,0,0,.95);
+
+z-index:9999;
+
+}
+
+#viewer img{
+
+max-width:92%;
+
+max-height:90%;
+
+border-radius:20px;
+
+box-shadow:0 0 30px rgba(255,255,255,.25);
+
+animation:zoomIn .4s;
+
+}
+
+#closeViewer{
+
+position:absolute;
+
+top:20px;
+
+right:30px;
+
+font-size:40px;
+
+cursor:pointer;
+
+color:white;
+
+}
+
+@keyframes zoomIn{
+
+from{
+
+transform:scale(.6);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
