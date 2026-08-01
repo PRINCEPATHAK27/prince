@@ -1,3 +1,4 @@
+<!-- night.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +12,29 @@
     width:min(600px, 90vw);
     height:min(420px, 55vh);
     margin:2rem auto;
+    background: radial-gradient(ellipse at 50% 50%, rgba(255,122,148,0.03), transparent 70%);
+    border-radius:30px;
+    border:1px solid rgba(255,122,148,0.05);
   }
   .wish-star{
     position:absolute;
     background:none;
     border:none;
-    font-size:1.6rem;
+    font-size:2rem;
     cursor:pointer;
     color:var(--gold);
-    filter:drop-shadow(0 0 8px rgba(240,192,121,0.7));
+    filter:drop-shadow(0 0 15px rgba(240,192,121,0.5));
     animation:twinkleStar 2.4s ease-in-out infinite;
+    transition: transform 0.3s ease;
   }
-  .wish-star.opened{ opacity:0.25; animation:none; }
-  @keyframes twinkleStar{ 0%,100%{ opacity:0.6; } 50%{ opacity:1; } }
+  .wish-star:hover { transform: scale(1.3); }
+  .wish-star.opened{
+    opacity:0.15;
+    animation:none;
+    filter:drop-shadow(0 0 5px rgba(240,192,121,0.1));
+    cursor:default;
+  }
+  @keyframes twinkleStar{ 0%,100%{ opacity:0.5; transform:scale(0.9); } 50%{ opacity:1; transform:scale(1.1); } }
 
   #reveal{
     display:none;
@@ -32,20 +43,30 @@
     padding:2rem;
     text-align:center;
     margin-top:1rem;
+    animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #reveal .lead {
+    font-size: 1.2rem;
+    color: var(--cream);
+    background: linear-gradient(135deg, rgba(255,122,148,0.05), rgba(240,192,121,0.03));
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255,122,148,0.08);
   }
   #counter{ color:var(--cream-dim); font-size:0.85rem; margin-top:0.5rem; }
+  #counter span { color: var(--rose); font-weight: 600; }
 </style>
 </head>
 <body>
 <canvas id="ambient-canvas"></canvas>
 
 <main class="page">
-  <p class="eyebrow center" style="margin-bottom:0.6rem;">chapter seven</p>
-  <h1 class="display-lg serif center" style="margin:0 0 0.4rem;">Under the Same Sky</h1>
+  <p class="eyebrow center" style="margin-bottom:0.6rem;">🌙 chapter seven</p>
+  <h1 class="display-lg serif center gradient-text" style="margin:0 0 0.4rem;">Under the Same Sky</h1>
   <p class="lead center" style="max-width:420px;">Tap a star. Each one is holding onto something I wanted to tell you.</p>
 
   <div class="sky" id="sky"></div>
-  <p id="counter">0 / 6 stars opened</p>
+  <p id="counter">🌟 <span id="star-count">0</span> / 6 stars opened</p>
 
   <div class="glass" id="reveal"></div>
 
@@ -66,7 +87,7 @@ const messages = [
 
 const sky = document.getElementById('sky');
 const reveal = document.getElementById('reveal');
-const counter = document.getElementById('counter');
+const counter = document.getElementById('star-count');
 const continueLink = document.getElementById('continue-link');
 let opened = 0;
 
@@ -75,20 +96,40 @@ const positions = [
   {top:'55%', left:'80%'}, {top:'75%', left:'10%'}, {top:'80%', left:'55%'}
 ];
 
+const colors = ['#ff7a94', '#f0c079', '#c084fc', '#4ade80', '#fbbf24', '#60a5fa'];
+
 messages.forEach((msg, i) => {
   const star = document.createElement('button');
   star.className = 'wish-star';
   star.textContent = '✦';
   star.style.top = positions[i].top;
   star.style.left = positions[i].left;
+  star.style.color = colors[i];
   star.style.animationDelay = (i*0.3) + 's';
+  star.style.textShadow = `0 0 20px ${colors[i]}40`;
   star.addEventListener('click', () => {
     if(star.classList.contains('opened')) return;
     star.classList.add('opened');
     opened++;
-    counter.textContent = `${opened} / 6 stars opened`;
+    counter.textContent = opened;
     reveal.style.display = 'block';
     reveal.innerHTML = `<p class="lead" style="margin:0;">"${msg}"</p>`;
+    // floating hearts effect
+    for(let j=0; j<8; j++) {
+      setTimeout(() => {
+        const h = document.createElement('span');
+        h.textContent = '💛';
+        h.style.position = 'fixed';
+        h.style.pointerEvents = 'none';
+        h.style.fontSize = (0.6 + Math.random()*1.2) + 'rem';
+        h.style.left = (event.clientX + (Math.random()-0.5)*100) + 'px';
+        h.style.top = (event.clientY + (Math.random()-0.5)*100) + 'px';
+        h.style.zIndex = '100';
+        h.style.animation = 'floatUp 1.2s ease-out forwards';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 1300);
+      }, j*50);
+    }
     if(opened === messages.length){
       continueLink.style.display = 'inline-flex';
     }
