@@ -36,3 +36,4 @@ images/  (put your photos here)
 ```
 
 No music is included, per your request — the site is fully silent by design.
+
