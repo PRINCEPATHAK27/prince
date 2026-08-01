@@ -1,3 +1,4 @@
+<!-- letter.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,14 +11,20 @@
   #pass-input{
     width:100%;
     padding:0.8rem 1rem;
-    border-radius:12px;
-    border:1px solid var(--glass-border);
-    background:rgba(255,255,255,0.05);
+    border-radius:14px;
+    border:2px solid rgba(255,122,148,0.15);
+    background:rgba(255,255,255,0.04);
     color:var(--cream);
     font-family:'Poppins', sans-serif;
     font-size:1rem;
     text-align:center;
     margin:1rem 0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  #pass-input:focus {
+    border-color: var(--rose);
+    outline: none;
+    box-shadow: 0 0 30px rgba(255,122,148,0.08);
   }
   #pass-error{ color:var(--rose); font-size:0.85rem; min-height:1.2em; }
   #letter-content{ display:none; text-align:left; }
@@ -25,27 +32,34 @@
   #letter-content textarea{
     width:100%;
     min-height:260px;
-    background:transparent;
-    border:1px dashed var(--glass-border);
-    border-radius:12px;
-    color:var(--cream-dim);
+    background:rgba(255,255,255,0.03);
+    border:2px solid rgba(255,122,148,0.1);
+    border-radius:14px;
+    color:var(--cream);
     font-family:'Cormorant Garamond', serif;
     font-size:1.15rem;
     line-height:1.9;
     padding:1rem;
+    transition: border-color 0.3s ease;
+  }
+  #letter-content textarea:focus {
+    border-color: var(--rose);
+    outline: none;
+    box-shadow: 0 0 30px rgba(255,122,148,0.05);
   }
   .hint{ font-size:0.8rem; color:var(--rose-soft); opacity:0.75; }
+  .lock-icon { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
 </style>
 </head>
 <body>
 <canvas id="ambient-canvas"></canvas>
 
 <main class="page">
-  <p class="eyebrow center" style="margin-bottom:0.6rem;">chapter six</p>
-  <h1 class="display-lg serif center" style="margin:0 0 2rem;">A Letter, Locked Just For You</h1>
+  <p class="eyebrow center" style="margin-bottom:0.6rem;">💌 chapter six</p>
+  <h1 class="display-lg serif center gradient-text" style="margin:0 0 2rem;">A Letter, Locked Just For You</h1>
 
   <div class="glass lock-wrap" id="lock-box">
-    <p class="display-md serif" style="margin:0 0 0.4rem;">🔒</p>
+    <span class="lock-icon">🔒</span>
     <p class="lead">Enter the password only you would know.</p>
     <input type="password" id="pass-input" placeholder="password" autocomplete="off">
     <p id="pass-error"></p>
@@ -54,7 +68,7 @@
   </div>
 
   <div class="glass lock-wrap" id="letter-content" style="max-width:560px;">
-    <p class="eyebrow">to Palak</p>
+    <p class="eyebrow">💛 to Palak</p>
     <textarea id="letter-text">Palak,
 
 By the time you're reading this, you've already gone through our whole story, our chats, our photos, a silly game and a puzzle — and you're still here. That means something.
@@ -73,7 +87,7 @@ Whatever you write here, mean every word.
 <script src="js/main.js"></script>
 <script>renderJourneyNav('letter.html');</script>
 <script>
-const PASSWORD = 'tamatar'; // case-insensitive check below
+const PASSWORD = 'tamatar';
 const input = document.getElementById('pass-input');
 const btn = document.getElementById('unlock-btn');
 const error = document.getElementById('pass-error');
@@ -87,6 +101,8 @@ function tryUnlock(){
     error.textContent = '';
   } else {
     error.textContent = 'Not quite — try again 💭';
+    input.style.borderColor = '#ff7a94';
+    setTimeout(() => input.style.borderColor = 'rgba(255,122,148,0.15)', 1000);
   }
 }
 
