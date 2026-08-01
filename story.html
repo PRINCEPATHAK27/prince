@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story · Forever With You</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+    max-width:640px;
+    width:100%;
+  }
+  .t-item{
+    padding:1.8rem 2rem;
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .t-item.show{ opacity:1; transform:translateY(0); }
+  .t-item .eyebrow{ margin-bottom:0.4rem; display:block; }
+  .t-item p{ color:var(--cream-dim); line-height:1.7; margin:0.5rem 0 0; }
+  .t-item textarea{
+    width:100%;
+    background:transparent;
+    border:none;
+    color:var(--cream-dim);
+    font-family:'Poppins', sans-serif;
+    font-size:0.98rem;
+    line-height:1.7;
+    resize:vertical;
+    min-height:60px;
+  }
+  .edit-hint{ font-size:0.75rem; color:var(--rose-soft); opacity:0.7; margin-top:0.4rem; }
+</style>
+</head>
+<body>
+<canvas id="ambient-canvas"></canvas>
+
+<main class="page">
+  <p class="eyebrow center" style="margin-bottom:0.6rem;">chapter one</p>
+  <h1 class="display-lg serif center" style="margin:0 0 3rem;">Our Story So Far</h1>
+
+  <div class="timeline">
+    <div class="glass t-item">
+      <span class="eyebrow">the beginning</span>
+      <textarea rows="3">This is where it started — write about how you two first met, the day, the place, the small detail you still remember.</textarea>
+      <div class="edit-hint">✎ click and type your own memory here</div>
+    </div>
+    <div class="glass t-item">
+      <span class="eyebrow">the moment it changed</span>
+      <textarea rows="3">The moment you realised this was different — a conversation, a laugh, a silence that said more than words.</textarea>
+      <div class="edit-hint">✎ click and type your own memory here</div>
+    </div>
+    <div class="glass t-item">
+      <span class="eyebrow">today</span>
+      <textarea rows="3">Where you are now, and why every day since has been worth it.</textarea>
+      <div class="edit-hint">✎ click and type your own memory here</div>
+    </div>
+  </div>
+
+  <a href="chat.html" class="btn" style="margin-top:3rem;">Continue →</a>
+</main>
+
+<script src="js/main.js"></script>
+<script>renderJourneyNav('story.html');</script>
+<script>
+  const items = document.querySelectorAll('.t-item');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('show'); });
+  }, {threshold:0.2});
+  items.forEach((el,i)=>{ setTimeout(()=>el.classList.add('show'), i*250); });
+</script>
+</body>
+</html>

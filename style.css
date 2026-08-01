@@ -1,0 +1,182 @@
+/* ===========================================================
+   Forever With You — shared styles
+   Palette: deep aubergine night sky + rose & gold warmth
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+  --bg-0:#12081c;
+  --bg-1:#1c0f2b;
+  --bg-2:#2a1839;
+  --rose:#ff7a94;
+  --rose-soft:#ffb0bf;
+  --gold:#f0c079;
+  --cream:#f8ecdf;
+  --cream-dim:rgba(248,236,223,0.65);
+  --glass-bg:rgba(255,255,255,0.06);
+  --glass-border:rgba(255,255,255,0.14);
+  --shadow-glow:0 0 40px rgba(255,122,148,0.25);
+}
+
+*{ box-sizing:border-box; }
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:
+    radial-gradient(ellipse at 20% -10%, #3a1f4d 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 110%, #3a1530 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2));
+  color:var(--cream);
+  font-family:'Poppins', sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3,.serif{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:600;
+  letter-spacing:0.01em;
+}
+
+a{ color:inherit; text-decoration:none; }
+
+/* focus visibility for accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+}
+
+/* ---------- ambient canvas (stars + floating hearts) ---------- */
+#ambient-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+.page{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:6vh 6vw;
+}
+
+/* ---------- glass card ---------- */
+.glass{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:22px;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.35);
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5em;
+  padding:0.9em 2.2em;
+  border-radius:999px;
+  border:1px solid var(--glass-border);
+  background:linear-gradient(135deg, rgba(255,122,148,0.85), rgba(240,192,121,0.75));
+  color:#1c0f16;
+  font-family:'Poppins', sans-serif;
+  font-weight:500;
+  font-size:1rem;
+  cursor:pointer;
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:var(--shadow-glow);
+}
+.btn:hover{ transform:translateY(-2px) scale(1.02); }
+.btn:active{ transform:translateY(0) scale(0.99); }
+
+.btn-ghost{
+  background:transparent;
+  color:var(--cream);
+  box-shadow:none;
+}
+.btn-ghost:hover{ background:rgba(255,255,255,0.08); }
+
+/* ---------- eyebrow / label ---------- */
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:0.32em;
+  font-size:0.72rem;
+  color:var(--rose-soft);
+  font-weight:500;
+}
+
+/* ---------- nav dots (journey progress) ---------- */
+.journey-nav{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:5;
+  padding:8px 14px;
+  border-radius:999px;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(10px);
+}
+.journey-nav a{
+  width:9px; height:9px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.25);
+  transition:all 0.25s ease;
+}
+.journey-nav a.active{
+  background:var(--rose);
+  box-shadow:0 0 10px var(--rose);
+  width:22px;
+  border-radius:6px;
+}
+.journey-nav a:hover{ background:var(--gold); }
+
+/* ---------- headings scale ---------- */
+.display-xl{ font-size:clamp(2.4rem, 7vw, 4.6rem); line-height:1.05; }
+.display-lg{ font-size:clamp(1.9rem, 5vw, 3rem); line-height:1.1; }
+.display-md{ font-size:clamp(1.4rem, 3.2vw, 1.9rem); }
+p.lead{ font-size:1.05rem; color:var(--cream-dim); line-height:1.7; }
+
+.center{ text-align:center; }
+
+/* ---------- floating heart click-burst ---------- */
+.heart-pop{
+  position:fixed;
+  pointer-events:none;
+  font-size:1.4rem;
+  z-index:50;
+  animation:floatUp 1.4s ease-out forwards;
+}
+@keyframes floatUp{
+  0%{ transform:translateY(0) scale(0.6); opacity:1; }
+  100%{ transform:translateY(-140px) scale(1.3); opacity:0; }
+}
+
+/* ---------- responsive helpers ---------- */
+.stack{ display:flex; flex-direction:column; gap:1.2rem; }
+.row{ display:flex; gap:1rem; flex-wrap:wrap; align-items:center; justify-content:center; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+}
+
+::selection{ background:var(--rose); color:#1c0f16; }
+
+/* scrollbar */
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-thumb{ background:rgba(255,122,148,0.4); border-radius:8px; }
+::-webkit-scrollbar-track{ background:transparent; }

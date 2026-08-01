@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Question · Forever With You</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .ask-wrap{ max-width:520px; width:100%; padding:3rem 2.2rem; text-align:center; position:relative; }
+  .btn-row{
+    position:relative;
+    display:flex;
+    gap:1.2rem;
+    justify-content:center;
+    margin-top:2.2rem;
+    min-height:70px;
+  }
+  #no-btn{ position:relative; transition:none; }
+  #celebrate{ display:none; text-align:center; }
+</style>
+</head>
+<body>
+<canvas id="ambient-canvas"></canvas>
+
+<main class="page">
+  <div class="glass ask-wrap" id="ask-box">
+    <p class="eyebrow" style="margin-bottom:0.6rem;">the final chapter</p>
+    <h1 class="display-lg serif" style="margin:0 0 1rem;">Palak,<br>will you be mine — forever?</h1>
+    <p class="lead">Every page before this was true. This one matters most.</p>
+    <div class="btn-row">
+      <button class="btn" id="yes-btn">Yes 💛</button>
+      <button class="btn btn-ghost" id="no-btn">No</button>
+    </div>
+  </div>
+
+  <div class="glass ask-wrap" id="celebrate">
+    <p class="display-xl serif" style="margin:0 0 0.8rem;">She said yes.</p>
+    <p class="lead">Prince Pathak & Palak — forever starts now. 💛</p>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script src="js/confetti.js"></script>
+<script src="js/fireworks.js"></script>
+<script>renderJourneyNav('proposal.html');</script>
+<script>
+const noBtn = document.getElementById('no-btn');
+const yesBtn = document.getElementById('yes-btn');
+const askBox = document.getElementById('ask-box');
+const celebrate = document.getElementById('celebrate');
+const btnRow = document.querySelector('.btn-row');
+
+// "No" playfully dodges away when hovered/clicked
+function dodge(){
+  const maxX = btnRow.clientWidth - noBtn.offsetWidth - 10;
+  const maxY = 40;
+  const x = (Math.random()-0.5)*2*maxX*0.4;
+  const y = (Math.random()-0.5)*2*maxY;
+  noBtn.style.position = 'relative';
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+}
+noBtn.addEventListener('mouseenter', dodge);
+noBtn.addEventListener('click', (e)=>{ e.preventDefault(); dodge(); });
+noBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); dodge(); });
+
+yesBtn.addEventListener('click', () => {
+  askBox.style.display = 'none';
+  celebrate.style.display = 'block';
+  launchConfetti(4000);
+  launchFireworks(6500);
+});
+</script>
+</body>
+</html>
