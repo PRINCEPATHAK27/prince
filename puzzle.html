@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puzzle · Forever With You</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .puzzle-wrap{ max-width:420px; width:100%; text-align:center; }
+  #puzzle-board{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:6px;
+    width:min(360px, 80vw);
+    height:min(360px, 80vw);
+    margin:1.6rem auto;
+    padding:8px;
+  }
+  .tile{
+    border-radius:10px;
+    border:none;
+    background-size:360px 360px;
+    background-color:rgba(255,255,255,0.05);
+    cursor:pointer;
+    color:var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.4rem;
+    font-weight:600;
+    transition:transform 0.15s ease;
+  }
+  .tile:hover{ transform:scale(0.97); }
+  .tile.empty{ visibility:hidden; }
+  #win-msg{ display:none; margin-top:1rem; }
+</style>
+</head>
+<body>
+<canvas id="ambient-canvas"></canvas>
+
+<main class="page">
+  <p class="eyebrow center" style="margin-bottom:0.6rem;">chapter five</p>
+  <h1 class="display-lg serif center" style="margin:0 0 0.4rem;">Piece It Back Together</h1>
+  <p class="lead center" style="max-width:400px;">Us — a little scrambled, but always meant to fit.</p>
+
+  <div class="glass puzzle-wrap">
+    <div id="puzzle-board"></div>
+    <div class="row">
+      <button class="btn btn-ghost" id="shuffle-btn">Shuffle</button>
+    </div>
+    <div id="win-msg">
+      <p class="display-md serif">Solved. 💛</p>
+      <p class="lead">Some things take a little shuffling before they make sense — us included.</p>
+      <a href="letter.html" class="btn">Continue →</a>
+    </div>
+  </div>
+
+  <a href="letter.html" class="btn btn-ghost" id="skip-link">Skip ahead →</a>
+</main>
+
+<script src="js/main.js"></script>
+<script>renderJourneyNav('puzzle.html');</script>
+<script>
+const board = document.getElementById('puzzle-board');
+const winMsg = document.getElementById('win-msg');
+const SIZE = 3;
+let tiles = [];
+let imgSrc = 'images/photo1.jpg';
+
+function buildTiles(){
+  board.innerHTML = '';
+  tiles = [];
+  for(let i=0;i<SIZE*SIZE;i++){
+    const btn = document.createElement('button');
+    btn.className = 'tile';
+    if(i === SIZE*SIZE - 1){
+      btn.classList.add('empty');
+    } else {
+      const row = Math.floor(i / SIZE);
+      const col = i % SIZE;
+      btn.style.backgroundImage = `url(${imgSrc})`;
+      btn.style.backgroundPosition = `-${col*120}px -${row*120}px`;
+      btn.textContent = '';
+    }
+    btn.dataset.index = i; // correct position
+    btn.addEventListener('click', () => tryMove(btn));
+    board.appendChild(btn);
+    tiles.push(btn);
+  }
+}
+
+// verify image exists; if not, fall back to number tiles
+const testImg = new Image();
+testImg.onload = () => buildTiles();
+testImg.onerror = () => { imgSrc = null; buildNumberTiles(); };
+testImg.src = imgSrc;
+
+function buildNumberTiles(){
+  board.innerHTML = '';
+  tiles = [];
+  for(let i=0;i<SIZE*SIZE;i++){
+    const btn = document.createElement('button');
+    btn.className = 'tile';
+    if(i === SIZE*SIZE - 1){
+      btn.classList.add('empty');
+    } else {
+      btn.textContent = i+1;
+      btn.style.background = 'linear-gradient(135deg, rgba(255,122,148,0.3), rgba(240,192,121,0.25))';
+      btn.style.display = 'flex';
+      btn.style.alignItems = 'center';
+      btn.style.justifyContent = 'center';
+    }
+    btn.dataset.index = i;
+    btn.addEventListener('click', () => tryMove(btn));
+    board.appendChild(btn);
+    tiles.push(btn);
+  }
+  shuffle();
+}
+
+function currentOrder(){
+  return Array.from(board.children);
+}
+
+function emptyIndex(){
+  return currentOrder().findIndex(t => t.classList.contains('empty'));
+}
+
+function tryMove(btn){
+  const order = currentOrder();
+  const btnPos = order.indexOf(btn);
+  const emptyPos = emptyIndex();
+  const br = Math.floor(btnPos/SIZE), bc = btnPos%SIZE;
+  const er = Math.floor(emptyPos/SIZE), ec = emptyPos%SIZE;
+  const adjacent = (Math.abs(br-er)+Math.abs(bc-ec)) === 1;
+  if(!adjacent) return;
+  // swap DOM nodes
+  const emptyNode = order[emptyPos];
+  if(btnPos < emptyPos){
+    board.insertBefore(emptyNode, btn);
+    board.insertBefore(btn, order[emptyPos+1] || null);
+  } else {
+    board.insertBefore(btn, emptyNode);
+  }
+  checkWin();
+}
+
+function checkWin(){
+  const order = currentOrder();
+  const solved = order.every((t,i) => Number(t.dataset.index) === i);
+  if(solved){
+    winMsg.style.display = 'block';
+  } else {
+    winMsg.style.display = 'none';
+  }
+}
+
+function shuffle(){
+  winMsg.style.display = 'none';
+  // do random valid moves so it's always solvable
+  for(let n=0;n<150;n++){
+    const emptyPos = emptyIndex();
+    const er = Math.floor(emptyPos/SIZE), ec = emptyPos%SIZE;
+    const neighbors = [];
+    if(er>0) neighbors.push(emptyPos-SIZE);
+    if(er<SIZE-1) neighbors.push(emptyPos+SIZE);
+    if(ec>0) neighbors.push(emptyPos-1);
+    if(ec<SIZE-1) neighbors.push(emptyPos+1);
+    const pick = neighbors[Math.floor(Math.random()*neighbors.length)];
+    const order = currentOrder();
+    tryMove(order[pick]);
+  }
+  winMsg.style.display = 'none';
+}
+
+document.getElementById('shuffle-btn').addEventListener('click', shuffle);
+
+setTimeout(()=>{ if(tiles.length) shuffle(); }, 300);
+</script>
+</body>
+</html>
