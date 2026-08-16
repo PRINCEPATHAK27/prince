@@ -28,7 +28,7 @@ function startCountdown(){
     const birthdayContent = document.getElementById("birthdayContent");
     if(!lockScreen) return;
 
-    const target = new Date("2026-08-16T00:00:00+05:30").getTime();
+    const target = new Date("2026-09-01T00:00:00+05:30").getTime();
 
     function update(){
         const diff = target - Date.now();
