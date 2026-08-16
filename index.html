@@ -1,27 +1,532 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forever With You</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Something Special ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top, #3b123f, #140719 45%, #08030b);
+      color: white;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .heart {
+      font-size: 65px;
+      animation: heartbeat 1.5s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    h1 {
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #ddd;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .subtitle {
+      margin-bottom: 30px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 30px 0;
+    }
+
+    .time-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 15px;
+      padding: 15px 5px;
+      backdrop-filter: blur(10px);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .time-box small {
+      color: #aaa;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff4f9a, #a855f7);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(255, 50, 150, .25);
+      transition: .3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 500px;
+      padding: 30px;
+      border-radius: 25px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+
+    .letter {
+      margin-top: 25px;
+      text-align: left;
+      line-height: 1.8;
+      color: #eee;
+    }
+
+    .photo-placeholder {
+      height: 250px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #39163e, #17101d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      font-size: 50px;
+    }
+
+    .final {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      animation: floatUp 6s linear forwards;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media(max-width: 400px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .countdown {
+        gap: 6px;
+      }
+
+      .time-box {
+        padding: 12px 3px;
+      }
+
+      .time-box span {
+        font-size: 21px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<canvas id="ambient-canvas"></canvas>
 
-<main class="page center">
-  <div class="hero-glow"></div>
-  <p class="eyebrow" style="margin-bottom:1.2rem;">✨ a little something from Prince</p>
-  <h1 class="display-xl serif gradient-text" style="margin:0 0 0.6rem;">Forever, <em>With You</em></h1>
-  <p class="lead" style="max-width:480px; margin:0 auto 2.6rem;">
-    Palak, I made you something. It's not a gift you can hold —
-    it's a little world I built just for us. Take your time walking through it.
-  </p>
-  <a href="story.html" class="btn pulse-btn">Begin our story →</a>
-</main>
+  <!-- LOCK SCREEN -->
+  <section class="page" id="lockScreen">
 
-<script src="js/main.js"></script>
-<script>renderJourneyNav('index.html');</script>
+    <div class="container">
+
+      <div class="heart">❤️</div>
+
+      <h1>Something Special Is Waiting...</h1>
+
+      <p class="subtitle">
+        This little surprise will unlock on<br>
+        <strong>1 September 2026</strong>
+      </p>
+
+      <div class="countdown">
+
+        <div class="time-box">
+          <span id="days">00</span>
+          <small>Days</small>
+        </div>
+
+        <div class="time-box">
+          <span id="hours">00</span>
+          <small>Hours</small>
+        </div>
+
+        <div class="time-box">
+          <span id="minutes">00</span>
+          <small>Minutes</small>
+        </div>
+
+        <div class="time-box">
+          <span id="seconds">00</span>
+          <small>Seconds</small>
+        </div>
+
+      </div>
+
+      <button class="btn hidden" id="unlockBtn">
+        Open Your Surprise ✨
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- WELCOME -->
+  <section class="section hidden" id="welcome">
+
+    <div class="card">
+
+      <div class="heart">💖</div>
+
+      <h2>Today Is Your Day</h2>
+
+      <p>
+        Today isn't just another day...
+        something beautiful deserves to be celebrated.
+      </p>
+
+      <br>
+
+      <button class="btn" onclick="showSection('memories')">
+        Begin The Surprise →
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- MEMORIES -->
+  <section class="section hidden" id="memories">
+
+    <div class="card">
+
+      <h2>Our Memories 📸</h2>
+
+      <p>
+        Every picture has a little story...
+      </p>
+
+      <div class="photo-placeholder">
+        📷
+      </div>
+
+      <p>
+        Yahan tum apni first photo add kar sakte ho.
+      </p>
+
+      <br>
+
+      <button class="btn" onclick="showSection('letter')">
+        One More Thing 💌
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- LETTER -->
+  <section class="section hidden" id="letter">
+
+    <div class="card">
+
+      <div class="heart">💌</div>
+
+      <h2>A Little Letter</h2>
+
+      <div class="letter">
+
+        <p>
+          Dear You,
+        </p>
+
+        <br>
+
+        <p>
+          Aaj ka din tumhare liye hai.
+          Main bas itna chahta hoon ki tum hamesha
+          khush raho aur tumhari smile kabhi kam na ho.
+        </p>
+
+        <br>
+
+        <p>
+          Happy Birthday! ❤️
+        </p>
+
+        <br>
+
+        <p>
+          — Someone who made this little surprise
+          just for you ✨
+        </p>
+
+      </div>
+
+      <br>
+
+      <button class="btn" onclick="showSection('final')">
+        Final Surprise 🎁
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL -->
+  <section class="section hidden" id="final">
+
+    <div class="card">
+
+      <div class="final">🎂❤️✨</div>
+
+      <h1>Happy Birthday!</h1>
+
+      <p>
+        May your day be filled with happiness,
+        beautiful memories and lots of smiles.
+      </p>
+
+      <br>
+
+      <p>
+        This little corner of the internet
+        was made especially for you. 💖
+      </p>
+
+      <br>
+
+      <button class="btn" onclick="createHearts()">
+        One Last Surprise ❤️
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <script>
+
+    // =====================================
+    // BIRTHDAY DATE
+    // =====================================
+
+    const birthday = new Date("September 1, 2026 00:00:00").getTime();
+
+
+    // =====================================
+    // COUNTDOWN
+    // =====================================
+
+    const timer = setInterval(function() {
+
+      const now = new Date().getTime();
+
+      const distance = birthday - now;
+
+      if (distance <= 0) {
+
+        clearInterval(timer);
+
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+
+        document
+          .getElementById("unlockBtn")
+          .classList.remove("hidden");
+
+        return;
+      }
+
+      const days = Math.floor(
+        distance / (1000 * 60 * 60 * 24)
+      );
+
+      const hours = Math.floor(
+        (distance / (1000 * 60 * 60)) % 24
+      );
+
+      const minutes = Math.floor(
+        (distance / (1000 * 60)) % 60
+      );
+
+      const seconds = Math.floor(
+        (distance / 1000) % 60
+      );
+
+      document.getElementById("days").innerText =
+        String(days).padStart(2, "0");
+
+      document.getElementById("hours").innerText =
+        String(hours).padStart(2, "0");
+
+      document.getElementById("minutes").innerText =
+        String(minutes).padStart(2, "0");
+
+      document.getElementById("seconds").innerText =
+        String(seconds).padStart(2, "0");
+
+    }, 1000);
+
+
+    // =====================================
+    // UNLOCK
+    // =====================================
+
+    document.getElementById("unlockBtn")
+      .addEventListener("click", function() {
+
+        document.getElementById("lockScreen")
+          .classList.add("hidden");
+
+        document.getElementById("welcome")
+          .classList.remove("hidden");
+
+        createHearts();
+
+      });
+
+
+    // =====================================
+    // SECTION CHANGE
+    // =====================================
+
+    function showSection(sectionId) {
+
+      document.querySelectorAll(".section")
+        .forEach(section => {
+          section.classList.add("hidden");
+        });
+
+      document.getElementById(sectionId)
+        .classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      createHearts();
+    }
+
+
+    // =====================================
+    // FLOATING HEARTS
+    // =====================================
+
+    function createHearts() {
+
+      for(let i = 0; i < 15; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.innerText =
+          ["❤️", "💕", "💖", "💗", "✨"][Math.floor(Math.random() * 5)];
+
+        heart.style.left =
+          Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+          (15 + Math.random() * 20) + "px";
+
+        heart.style.animationDuration =
+          (4 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 8000);
+
+      }
+
+    }
+
+  </script>
+
 </body>
 </html>
