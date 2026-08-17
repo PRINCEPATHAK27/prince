@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Birthday Cake</title><link rel="stylesheet" href="style.css"></head><body>
+<audio id="birthdaySong" loop><source src="music/happy-birthday-to-you.mp3"></audio>
+<section class="real-cake-game"><p>🎂 Happy Birthday ❤️</p><h1>Make a Wish ✨</h1>
+<div id="cake" class="cake">
+<div class="flames"><i>🔥</i><i>🔥</i><i>🔥</i></div><div id="candles" class="candles"><b>🕯️</b><b>🕯️</b><b>🕯️</b></div>
+<div class="top"></div><div class="cream"></div><div class="bottom"></div><div class="plate"></div><div id="knife">🔪</div><div id="cutline"></div></div>
+<p id="hint">🕯️ Candles par tap karo</p><p id="status"></p>
+<div id="done" class="done"><h2>🎉 Happy Birthday To You! ❤️</h2><p>Cake cut ho gaya! 🍰</p><a href="gallery.html"><button>📸 Memories</button></a><a href="puzzle.html"><button>🧩 Photo Game</button></a><a href="proposal.html"><button>💌 Final Surprise</button></a></div></section>
+<script>
+const cake=document.getElementById('cake'), flames=document.querySelectorAll('.flames i'), hint=document.getElementById('hint'), status=document.getElementById('status');let off=false,down=false,x0=0;
+function music(){const a=document.getElementById('birthdaySong');a.volume=.65;a.play().catch(()=>{});}
+document.getElementById('candles').onclick=()=>{off=true;flames.forEach(x=>x.classList.add('off'));hint.textContent='✨ Ab finger se cake ko left se right drag karo';status.textContent='Candles bujh gayi ❤️';music();};
+cake.onpointerdown=e=>{if(!off)return;down=true;x0=e.clientX;cake.setPointerCapture(e.pointerId);document.getElementById('knife').classList.add('show');};
+cake.onpointermove=e=>{if(down)document.getElementById('knife').style.transform='translateX('+Math.max(0,Math.min(250,e.clientX-x0))+'px) rotate(-25deg)';};
+cake.onpointerup=e=>{if(!down)return;down=false;let dx=e.clientX-x0;let k=document.getElementById('knife');k.classList.remove('show');k.style.transform='';if(dx>120){document.getElementById('cutline').classList.add('show');cake.classList.add('split');hint.textContent='🎉 Cake cut ho gaya!';status.textContent='Happy Birthday ❤️';document.getElementById('done').classList.add('show');}};
+</script></body></html>
