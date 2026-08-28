@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 Birthday Surprise ❤️</title>
+<link rel="stylesheet" href="style.css?v=20260816b">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="countdown-lock">
+
+<audio id="bgMusic" autoplay loop>
+    <source src="music/romantic.mp3" type="audio/mp3">
+</audio>
+
+<div class="hearts">
+    <span>❤️</span><span>💖</span><span>💕</span><span>💗</span>
+    <span>💞</span><span>❤️</span><span>💖</span><span>💕</span>
+</div>
+
+<section id="countdownLockScreen" class="countdown-lock-screen">
+    <div class="countdown-lock-card">
+        <div class="lock-icon">🎂</div>
+        <p class="mini-title">A Special Birthday Surprise</p>
+        <h1>Something Special Is Coming ❤️</h1>
+        <p class="lock-subtitle">01 September tak wait karo...</p>
+
+        <div id="countdown" class="countdown big-countdown">
+            <div><strong id="days">00</strong><span>Days</span></div>
+            <div><strong id="hours">00</strong><span>Hours</span></div>
+            <div><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div><strong id="seconds">00</strong><span>Seconds</span></div>
+        </div>
+
+        <p id="lockMessage" class="lock-message">
+            🔒 Surprise abhi locked hai ❤️
+        </p>
+    </div>
+</section>
+
+<main id="birthdayContent" class="birthday-content-hidden">
+<section class="love-question-game">
+<div class="love-card">
+<div class="heart-big">❤️</div>
+<h1>Ek Chhota Sa Sawal...</h1>
+<p class="love-question">Kya tum mujhse pyaar karti ho? ❤️</p>
+<p id="loveHint">Sach-sach answer dena 😌</p>
+<div class="love-buttons" id="loveButtons">
+<button class="yes-love" onclick="sayYes()">YES ❤️</button>
+<button id="noButton" class="no-love">NO 😏</button>
+</div>
+<div id="yesResult" class="yes-result"><div class="celebrate-hearts">💖 💕 💗 💕 💖</div><h2>I knew it! 🥰❤️</h2><p>Ab birthday surprise officially unlock! 🎉</p><button onclick="openWebsite()">Continue To Surprise ✨</button></div>
+</div>
+</section>
+<section id="afterLove" class="after-love hidden-after-question"><div class="love-card"><h2>🎉 Surprise Unlocked! 🎉</h2><p>Ab birthday memories aur baaki surprises dekho ❤️</p><div class="buttons"><a href="gallery.html"><button>📸 Our Memories</button></a><a href="puzzle.html"><button>🧩 Photo Puzzle</button></a><a href="proposal.html"><button>💌 Final Surprise</button></a></div></div></section>
+</main>
+
+<footer>
+    <p>Made With Endless Love ❤️</p>
+    <p>01 September • A Day Made Special 🎂</p>
+</footer>
+
+<script src="script.js?v=20260816e"></script>
+<script>
+let noMoves=0;
+const noBtn=document.getElementById("noButton");
+if(noBtn){
+function moveNo(){
+ const pad=18,maxX=Math.max(pad,innerWidth-noBtn.offsetWidth-pad),maxY=Math.max(120,innerHeight-noBtn.offsetHeight-pad);
+ noBtn.style.position="fixed";noBtn.style.left=(pad+Math.random()*(maxX-pad))+"px";noBtn.style.top=(120+Math.random()*Math.max(1,maxY-120))+"px";noBtn.classList.add("running");
+ noMoves++;document.getElementById("loveHint").textContent=["Are you sure? 😏","NO button bach raha hai 😂","Pakad ke dikhao! 😜","YES hi sahi answer hai ❤️","Itna easy NO nahi milega 😌"][Math.min(noMoves-1,4)];
+}
+noBtn.onmouseenter=moveNo;noBtn.ontouchstart=e=>{e.preventDefault();moveNo()};noBtn.onclick=e=>{e.preventDefault();moveNo()};
+}
+function sayYes(){
+ document.getElementById("loveButtons").style.display="none";document.getElementById("loveHint").style.display="none";document.getElementById("yesResult").classList.add("show-love-result");
+ for(let i=0;i<25;i++)setTimeout(()=>{let h=document.createElement("span");h.className="love-fall";h.textContent=["❤️","💖","💕","✨"][Math.floor(Math.random()*4)];h.style.left=Math.random()*100+"vw";document.body.appendChild(h);setTimeout(()=>h.remove(),4500)},i*60);
+}
+function openWebsite(){document.querySelector(".love-question-game").style.display="none";document.getElementById("afterLove").classList.remove("hidden-after-question")}
+</script></body>
+</html>
