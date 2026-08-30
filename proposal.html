@@ -1,25 +1,23 @@
 <!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><body class="proposal-theme"><audio id="bgMusic" loop preload="auto"><source src="music/birthday.mp3" type="audio/mpeg"></audio><div class="page"><main class="card"><h1 class="page-title">For You ❤️</h1><div class="frame"><p class="text"><span id="typedText"></span><span class="type-cursor" id="cursor"></span></p></div><div class="nav"><a href="index.html"><button>Home 🏠</button></a></div></main></div><script>
-const lines=["Happy Birthday, meri jaan 🎂❤️✨
-
-Aaj ka din mere liye bahut special hai, kyunki aaj tum is duniya mein aayi thi. 🥹❤️ Tumhari smile, tumhari बातें aur tumhara mere life mein hona mere liye bahut special hai.
-
-Main bas itni dua karta hoon ki tumhari zindagi hamesha khushiyon se bhari rahe aur tumhare saare sapne poore hon. 🌸✨
-
-Tumhare birthday par main tumhe ye batana chahta hoon ki tum mere liye kitni special ho. ❤️ Tumhari ek smile mera mood better kar sakti hai aur tumhari khushi dekhkar mujhe bhi khushi milti hai. 🥰
-
-Aaj ka din sirf tumhara hai, to खूब मुस्कुराना, खुश रहना aur apne birthday ko full enjoy karna. 🎉🎂✨
-
-Happy Birthday, meri beautiful girl ❤️🎂
-Tumhari life ka ye naya saal bahut सारी खुशियाँ aur beautiful memories lekar aaye. 🥹✨❤️","Tumhari smile hamesha aise hi khilti rahe, yahi meri sabse badi wish hai. ✨","Tum jab paas ho, sab kuch thoda zyada khoobsurat lagta hai.","Tumhara saath hi meri zindagi ka sabse pyara tohfa hai.","Chahe kuch bhi ho jaaye, main hamesha tumhare saath hoon. 💖","Happy Birthday meri jaan, hamesha khush aur muskurati raho. ❤️"];
+const blocks=[
+ ["Happy Birthday, meri jaan 🎂❤️✨"],
+ ["Aaj ka din mere liye bahut special hai, kyunki aaj tum is duniya mein aayi thi. 🥹❤️ Tumhari smile, tumhari बातें aur tumhara mere life mein hona mere liye bahut special hai."],
+ ["Main bas itni dua karta hoon ki tumhari zindagi hamesha khushiyon se bhari rahe aur tumhare saare sapne poore hon. 🌸✨"],
+ ["Tumhare birthday par main tumhe ye batana chahta hoon ki tum mere liye kitni special ho. ❤️ Tumhari ek smile mera mood better kar sakti hai aur tumhari khushi dekhkar mujhe bhi khushi milti hai. 🥰"],
+ ["Aaj ka din sirf tumhara hai, to खूब मुस्कुराना, खुश रहना aur apne birthday ko full enjoy karna. 🎉🎂✨"],
+ ["Happy Birthday, meri beautiful girl ❤️🎂","Tumhari life ka ye naya saal bahut सारी खुशियाँ aur beautiful memories lekar aaye. 🥹✨❤️"]
+];
 const el=document.getElementById('typedText'),cur=document.getElementById('cursor');
-let li=0,ci=0;
-function typeLine(){
- if(li>=lines.length){if(cur)cur.style.display='none';return;}
- const chars=[...lines[li]];
- if(ci<chars.length){el.innerHTML+=chars[ci];ci++;setTimeout(typeLine,40);}
- else{el.innerHTML+='<br><br>';li++;ci=0;setTimeout(typeLine,500);}
+let bi=0,si=0,ci=0;
+function typeNext(){
+ if(bi>=blocks.length){if(cur)cur.style.display='none';return;}
+ const sub=blocks[bi][si];
+ const chars=[...sub];
+ if(ci<chars.length){el.innerHTML+=chars[ci];ci++;setTimeout(typeNext,40);}
+ else if(si<blocks[bi].length-1){el.innerHTML+='<br>';si++;ci=0;setTimeout(typeNext,250);}
+ else{el.innerHTML+='<br><br>';bi++;si=0;ci=0;setTimeout(typeNext,500);}
 }
-typeLine();
+typeNext();
 </script><script>
 (function(){
  const music=document.getElementById('bgMusic');
