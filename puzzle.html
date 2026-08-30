@@ -1,0 +1,14 @@
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><body class="puzzle-theme"><audio id="bgMusic" loop preload="auto"><source src="music/birthday.mp3" type="audio/mpeg"></audio><div class="page"><main class="card"><h1 class="page-title">Photo Game 🧩</h1><div class="frame"><div class="puzzle-board" id="b"></div></div><div class="nav"><a href="proposal.html"><button>Next ✨</button></a></div></main></div><script>for(let i=0;i<9;i++){let x=document.createElement('div');x.className='piece';x.style.backgroundImage="url(images/photo1.jpg)";x.style.backgroundPosition=`${i%3*50}% ${Math.floor(i/3)*50}%`;b.appendChild(x)}</script><script>
+(function(){
+ const music=document.getElementById('bgMusic');
+ if(!music) return;
+ const saved=localStorage.getItem('birthdayMusicTime');
+ const wasPlaying=localStorage.getItem('birthdayMusicPlaying')==='yes';
+ if(saved) music.currentTime=parseFloat(saved)||0;
+ function save(){localStorage.setItem('birthdayMusicTime',music.currentTime);localStorage.setItem('birthdayMusicPlaying','yes');}
+ music.addEventListener('timeupdate',save);
+ music.addEventListener('play',()=>localStorage.setItem('birthdayMusicPlaying','yes'));
+ document.addEventListener('pointerdown',()=>{music.play().catch(()=>{});},{once:true});
+ if(wasPlaying){music.play().catch(()=>{});}
+})();
+</script></body>
