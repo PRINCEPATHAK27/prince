@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><link rel="stylesheet" href="style.css"></head><body class="index-theme"><audio id="bgMusic" loop preload="auto"><source src="music/birthday.mp3" type="audio/mpeg"></audio><div class="page"><div class="card" id="count"><div class="countdown"><div class="time-box"><b id="d">0</b><span>DAYS</span></div><div class="time-box"><b id="h">0</b><span>HOURS</span></div><div class="time-box"><b id="m">0</b><span>MINUTES</span></div><div class="time-box"><b id="s">0</b><span>SECONDS</span></div></div></div><div class="love-card hidden" id="love"><div style="font-size:70px">❤️</div><p class="love-question">Kya tum mujhse pyaar karti ho? ❤️</p><div class="love-buttons" id="btns"><button class="yes" onclick="yes()">YES ❤️</button><button class="no" id="no">NO 😏</button></div><div class="result" id="res"><div style="font-size:60px">💖</div><button onclick="location.href='gallery.html'">Continue ✨</button></div></div></div><script src='script.js'></script><script>
+(function(){
+ const music=document.getElementById('bgMusic');
+ if(!music) return;
+ const saved=localStorage.getItem('birthdayMusicTime');
+ const wasPlaying=localStorage.getItem('birthdayMusicPlaying')==='yes';
+ if(saved) music.currentTime=parseFloat(saved)||0;
+ function save(){localStorage.setItem('birthdayMusicTime',music.currentTime);localStorage.setItem('birthdayMusicPlaying','yes');}
+ music.addEventListener('timeupdate',save);
+ music.addEventListener('play',()=>localStorage.setItem('birthdayMusicPlaying','yes'));
+ document.addEventListener('pointerdown',()=>{music.play().catch(()=>{});},{once:true});
+ if(wasPlaying){music.play().catch(()=>{});}
+})();
+</script></body></html>
