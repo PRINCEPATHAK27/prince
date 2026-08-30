@@ -1,4 +1,15 @@
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><body class="proposal-theme"><audio id="bgMusic" loop preload="auto"><source src="music/birthday.mp3" type="audio/mpeg"></audio><div class="page"><main class="card"><h1 class="page-title">For You ❤️</h1><div class="frame"><p class="text">Happy Birthday ❤️<br><br>Ye chhota sa surprise sirf tumhare liye hai. Tumhari smile hamesha bani rahe. ✨💖</p></div><div class="nav"><a href="index.html"><button>Home 🏠</button></a></div></main></div><script>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="style.css"><body class="proposal-theme"><audio id="bgMusic" loop preload="auto"><source src="music/birthday.mp3" type="audio/mpeg"></audio><div class="page"><main class="card"><h1 class="page-title">For You ❤️</h1><div class="frame"><p class="text"><span id="typedText"></span><span class="type-cursor" id="cursor"></span></p></div><div class="nav"><a href="index.html"><button>Home 🏠</button></a></div></main></div><script>
+const lines=["Happy Birthday Palak ❤️","Ye chhota sa surprise sirf tumhare liye hai.","Tumhari smile hamesha aise hi khilti rahe, yahi meri sabse badi wish hai. ✨","Tum jab paas ho, sab kuch thoda zyada khoobsurat lagta hai.","Tumhara saath hi meri zindagi ka sabse pyara tohfa hai.","Chahe kuch bhi ho jaaye, main hamesha tumhare saath hoon. 💖","Happy Birthday meri jaan, hamesha khush aur muskurati raho. ❤️"];
+const el=document.getElementById('typedText'),cur=document.getElementById('cursor');
+let li=0,ci=0;
+function typeLine(){
+ if(li>=lines.length){if(cur)cur.style.display='none';return;}
+ const chars=[...lines[li]];
+ if(ci<chars.length){el.innerHTML+=chars[ci];ci++;setTimeout(typeLine,40);}
+ else{el.innerHTML+='<br><br>';li++;ci=0;setTimeout(typeLine,500);}
+}
+typeLine();
+</script><script>
 (function(){
  const music=document.getElementById('bgMusic');
  if(!music) return;
