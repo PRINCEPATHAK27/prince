@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="theme-color" content="#7b215d">
+  <link rel="stylesheet" href="style.css">
+  <title>For My Pyari ❤️</title>
+</head>
+<body class="special-theme">
+  <div class="floaties" id="floaties"></div>
+  <script src="decor.js"></script>
+
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music/birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="page special-page">
+    <main class="card special-card">
+      <h1 class="page-title">Just For You ❤️</h1>
+
+      <section class="flower-photo-frame" aria-label="Special photo">
+        <div class="flower-ring flower-top">🌹 🌷 🪷 🌸 🌺 🪷 🌷 🌹</div>
+        <div class="flower-ring flower-left">🌹<span>🪷</span>🌷<span>🌺</span>🌸</div>
+        <div class="flower-ring flower-right">🌸<span>🌺</span>🌷<span>🪷</span>🌹</div>
+        <div class="flower-ring flower-bottom">🌷 🌺 🪷 🌸 🌹 🌸 🪷 🌺 🌷</div>
+        <div class="special-photo-wrap">
+          <img src="images/photo25.jpg" class="special-photo" alt="Special memory photo">
+        </div>
+      </section>
+
+      <section class="heart-message-frame">
+        <div class="heart-edge top-hearts">❤️ 💗 💖 💕 💘 💕 💖 💗 ❤️</div>
+        <div class="heart-edge left-hearts">❤️<span>💗</span><span>💖</span><span>💕</span>❤️</div>
+        <div class="heart-edge right-hearts">❤️<span>💕</span><span>💖</span><span>💗</span>❤️</div>
+        <div class="love-message" lang="hi">
+          <div>मेरी प्यारी टमाटर ❤️</div>
+          <div>मेरी प्यारी wife, thankyou मेरी जिंदगी में आने के लिए</div>
+          <div>मुझसे इतना प्यार करने के लिए ❤️</div>
+        </div>
+        <div class="heart-edge bottom-hearts">❤️ 💗 💖 💕 💘 💕 💖 💗 ❤️</div>
+      </section>
+
+      <div class="nav special-nav">
+        <a href="balloon.html"><button type="button">Back 🎈</button></a>
+        <a href="index.html"><button type="button">Home 🏠</button></a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+  (function(){
+    const music=document.getElementById('bgMusic');
+    if(!music) return;
+    const saved=localStorage.getItem('birthdayMusicTime');
+    const wasPlaying=localStorage.getItem('birthdayMusicPlaying')==='yes';
+    if(saved) music.currentTime=parseFloat(saved)||0;
+    function save(){
+      localStorage.setItem('birthdayMusicTime',music.currentTime);
+      localStorage.setItem('birthdayMusicPlaying','yes');
+    }
+    music.addEventListener('timeupdate',save);
+    music.addEventListener('play',()=>localStorage.setItem('birthdayMusicPlaying','yes'));
+    document.addEventListener('pointerdown',()=>{music.play().catch(()=>{});},{once:true});
+    if(wasPlaying) music.play().catch(()=>{});
+  })();
+  </script>
+</body>
+</html>
