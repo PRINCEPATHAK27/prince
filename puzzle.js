@@ -1,6 +1,7 @@
 const puzzle=document.getElementById("puzzle");
 let order=[0,1,2,3,4,5,6,7,8];
 let first=null;
+let solved=false;
 const image="images/photo1.jpg";
 
 function draw(){
@@ -18,8 +19,9 @@ function draw(){
   });
 }
 function select(piece){
+  if(solved)return;
   if(first===null){first=piece;piece.classList.add("selected");return;}
-  if(first===piece)return;
+  if(first===piece){piece.classList.remove("selected");first=null;return;}
   swap(first,piece);
   first.classList.remove("selected");
   first=null;
@@ -35,11 +37,12 @@ function swap(a,b){
 function check(){
   const pieces=document.querySelectorAll(".piece");
   const win=[...pieces].every((p,i)=>Number(p.dataset.value)===i);
-  if(win) document.getElementById("message").innerHTML="🎉 Congratulations ❤️<br><br>Memory Complete! ❤️";
+  if(win){solved=true;document.getElementById("message").innerHTML="🎉 Congratulations ❤️<br><br>Memory Complete! ❤️";}
 }
 function shufflePuzzle(){
   do{order=[...Array(9).keys()].sort(()=>Math.random()-0.5);}while(order.every((v,i)=>v===i));
   first=null;
+  solved=false;
   document.getElementById("message").innerHTML="";
   draw();
 }
