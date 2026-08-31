@@ -10,16 +10,39 @@ let popped=0,busy=false;
 
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
+function randomSpots(n,w,h,iw,ih,minDist){
+ const pos=[];
+ for(let i=0;i<n;i++){
+  let best=null,bestScore=-1;
+  for(let t=0;t<30;t++){
+   const x=Math.random()*Math.max(1,w-iw);
+   const y=Math.random()*Math.max(1,h-ih);
+   if(pos.length===0){best={x,y};break;}
+   let minD=Infinity;
+   for(const p of pos){const dx=x-p.x,dy=y-p.y;const d=Math.sqrt(dx*dx+dy*dy);if(d<minD)minD=d;}
+   if(minD>=minDist){best={x,y};break;}
+   if(minD>bestScore){bestScore=minD;best={x,y};}
+  }
+  pos.push(best);
+ }
+ return pos;
+}
+
 function buildBalloons(){
  field.innerHTML='';
  popped=0;busy=false;
  finishNav.style.display='none';
  hint.textContent='Ek balloon choose karo aur pop karo ❤️';
  const order=shuffle([...messages]);
+ const fw=field.clientWidth||300, fh=field.clientHeight||320;
+ const bw=54, bh=66;
+ const spots=randomSpots(10,fw,fh,bw,bh,60);
  for(let i=0;i<10;i++){
   const b=document.createElement('div');
   b.className='balloon';
   b.style.background=`radial-gradient(circle at 32% 26%,#ffffff95,${colors[i]} 62%)`;
+  b.style.left=spots[i].x+'px';
+  b.style.top=spots[i].y+'px';
   b.dataset.msg=order[i];
   b.onclick=()=>pop(b);
   field.appendChild(b);
@@ -33,8 +56,8 @@ function burst(b){
   const p=document.createElement('span');
   p.className='particle';
   p.textContent=particleEmojis[Math.floor(Math.random()*particleEmojis.length)];
-  const angle=(Math.PI*2*i)/8+Math.random()*0.3;
-  const dist=45+Math.random()*35;
+  const angle=Math.random()*Math.PI*2;
+  const dist=40+Math.random()*40;
   p.style.left=cx+'px';
   p.style.top=cy+'px';
   p.style.setProperty('--dx',(Math.cos(angle)*dist)+'px');
@@ -65,5 +88,7 @@ function pop(b){
 }
 
 function resetGame(){buildBalloons();}
+
+window.addEventListener('resize',()=>{if(popped===0)buildBalloons();});
 
 buildBalloons();
