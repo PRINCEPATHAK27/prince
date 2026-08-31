@@ -1,4 +1,4 @@
-const target = new Date("2026-09-01T00:00:00+05:30").getTime();
+const target = new Date("2026-08-01T00:00:00+05:30").getTime();
 function updateCountdown(){
  const now=Date.now(), diff=target-now;
  const count=document.getElementById("count"), love=document.getElementById("love");
