@@ -1,0 +1,34 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><link rel="stylesheet" href="style.css"></head><body class="proposal-theme"><div class="floaties" id="floaties"></div><script src="decor.js"></script><audio id="bgMusic" loop preload="auto"><source src="music/birthday.mp3" type="audio/mpeg"></audio><div class="page"><main class="card"><h1 class="page-title">For You ❤️</h1><div class="frame romantic-frame"><p class="text"><span id="typedText"></span><span class="type-cursor" id="cursor"></span></p></div><div class="photo-decor"><img src="images/photo15.jpg"><img src="images/photo16.jpg"></div><div class="nav"><a href="index.html"><button>Home 🏠</button></a><a href="balloon.html"><button>Next ✨</button></a></div></main></div><script>
+const blocks=[
+ ["Happy Birthday, meri jaan 🎂❤️✨"],
+ ["Aaj ka din mere liye bahut special hai, kyunki aaj tum is duniya mein aayi thi. 🥹❤️ Tumhari smile, tumhari बातें aur tumhara mere life mein hona mere liye bahut special hai."],
+ ["Main bas itni dua karta hoon ki tumhari zindagi hamesha khushiyon se bhari rahe aur tumhare saare sapne poore hon. 🌸✨"],
+ ["Tumhare birthday par main tumhe ye batana chahta hoon ki tum mere liye kitni special ho. ❤️ Tumhari ek smile mera mood better kar sakti hai aur tumhari khushi dekhkar mujhe bhi khushi milti hai. 🥰"],
+ ["Aaj ka din sirf tumhara hai, to खूब मुस्कुराना, खुश रहना aur apne birthday ko full enjoy karna. 🎉🎂✨"],
+ ["Happy Birthday, meri beautiful girl ❤️🎂","Tumhari life ka ye naya saal bahut सारी खुशियाँ aur beautiful memories lekar aaye. 🥹✨❤️"]
+];
+const el=document.getElementById('typedText'),cur=document.getElementById('cursor');
+let bi=0,si=0,ci=0;
+function typeNext(){
+ if(bi>=blocks.length){if(cur)cur.style.display='none';return;}
+ const sub=blocks[bi][si];
+ const chars=[...sub];
+ if(ci<chars.length){el.innerHTML+=chars[ci];ci++;setTimeout(typeNext,40);}
+ else if(si<blocks[bi].length-1){el.innerHTML+='<br>';si++;ci=0;setTimeout(typeNext,250);}
+ else{el.innerHTML+='<br><br>';bi++;si=0;ci=0;setTimeout(typeNext,500);}
+}
+typeNext();
+</script><script>
+(function(){
+ const music=document.getElementById('bgMusic');
+ if(!music) return;
+ const saved=localStorage.getItem('birthdayMusicTime');
+ const wasPlaying=localStorage.getItem('birthdayMusicPlaying')==='yes';
+ if(saved) music.currentTime=parseFloat(saved)||0;
+ function save(){localStorage.setItem('birthdayMusicTime',music.currentTime);localStorage.setItem('birthdayMusicPlaying','yes');}
+ music.addEventListener('timeupdate',save);
+ music.addEventListener('play',()=>localStorage.setItem('birthdayMusicPlaying','yes'));
+ document.addEventListener('pointerdown',()=>{music.play().catch(()=>{});},{once:true});
+ if(wasPlaying){music.play().catch(()=>{});}
+})();
+</script></body></html>
